@@ -1,0 +1,88 @@
+﻿@model PersonelTakip1.Model.LoginViewModel
+
+@{
+
+    ViewBag.Title = "Login";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+}
+
+<div align="center">
+
+    <h2>Giriş Yap</h2>
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+
+    {
+
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true)
+
+        if (@ViewBag.Message != null)
+
+        {
+
+            <div style="border: 1px solid red">
+
+                @ViewBag.Message
+
+            </div>
+
+        }
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            <div class="form-group">
+
+                <h5>Kullanıcı Adı</h5>
+
+                <div class="col-md-10">
+
+                    @Html.EditorFor(a => a.UserName)
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <h5>Şifre</h5>
+
+                <div class="col-md-10">
+                    @Html.EditorFor(a => a.Sifre)
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-offset-2 col-md-10">
+
+                    <button type="submit"><i class="fa fa-sign-in fa-fw"></i>Giriş Yap</button>
+
+                </div>
+
+            </div>
+
+        </div>
+        if (!string.IsNullOrEmpty(ViewBag.Message)) {
+            <script type="text/javascript">
+                alert('<%=ViewBag.Message%>');
+            </script>
+             }
+    }
+    @*if (!string.IsNullOrEmpty(ViewBag.msg))
+    {
+    <script type="text/javascript">alert('@ViewBag.msg');
+    </script>
+    }
+    }*@
+
+</div>

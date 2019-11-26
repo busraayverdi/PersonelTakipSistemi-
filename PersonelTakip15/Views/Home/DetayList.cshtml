@@ -1,0 +1,71 @@
+﻿
+@model Personel.Model.PersonelViewModel
+
+@{
+
+    ViewBag.Title = "Detay List";
+
+}
+
+<style>
+    body {
+        background-color: #d69696;
+    }
+
+    .gelismis {
+        background-color: #ad6565;
+        border: 15px solid rgba(255, 255, 255, .5);
+        border-radius: 115px;
+        width: 300px;
+        height: 300px;
+        line-height: 20px;
+        font-size: 35px;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-shadow: #2d4251 5px 5px 5px;
+        margin: auto;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+    #font-style {
+        text-align: center;
+        font-weight: 400 bold;
+        color: black;
+        font-weight: 300;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    }
+</style>
+
+
+
+<h1 id="font-style">Personel Listesi</h1>
+<div>
+    <br />
+
+    <div class="gelismis">
+        <div>
+            <label>Ad:</label>
+
+            @Html.DisplayFor(m => m.Ad)
+        </div>
+        <br />
+        <div>
+            <label>Soyad:</label>
+            @Html.DisplayFor(m => m.Soyad)
+        </div>
+        <br />
+        <div>
+            <label>Departman:</label>
+            @Html.DisplayFor(m => m.Departman)
+
+        </div>
+        <br />
+        <div>
+            <label>İzin Günü:</label>
+            @Html.DisplayFor(m => m.İzinGunu)
+
+        </div>
+        <br />
+    </div>
+    </div>

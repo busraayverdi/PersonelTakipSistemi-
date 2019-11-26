@@ -1,0 +1,192 @@
+﻿
+@model List<Personel.Model.PersonelViewModel>
+
+@{
+
+    ViewBag.Title = "Home Page";
+    ViewBag.Message = "Hata";
+
+}
+
+<style>
+
+    body {
+        background-color: #d6cece;
+    }
+
+    table {
+        text-align: center;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 3px solid #121212;
+        text-align: center;
+        padding: 8px;
+        background-color: #ffd1d1;
+    }
+
+    tr:nth-child(even) {
+    }
+
+    font {
+        font-size: 10px;
+        text-decoration-color: rebeccapurple;
+        text-align: center;
+        font-family: arial, sans-serif;
+    }
+
+    #font-style {
+        text-align: center;
+        font-weight: 400 bold;
+        color: black;
+        font-weight: 300;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    }
+
+    .createuzaklik {
+        width: 100px;
+        height: 40px;
+        margin-bottom: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    }
+
+    .createuzaklik2 {
+        width: 100px;
+        height: 40px;
+        margin-top: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        position: relative;
+        left: 1150px;
+        top:-120px;
+      
+    }
+    #createicon{
+        width:30px;
+        height:30px;
+    }
+
+    #createbutton {
+        background-color: #ad6565;
+        color: black;
+    }
+
+    .button {
+        background-color: #ad6565;
+        color: black;
+    }
+</style>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="Bilgilendirme" id="exampleModalLabel">Bilgilendirme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+
+            {
+                <div class="modal-body">
+                    Silme işlemini yapmak istediğinize emin misiniz ?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="submitButton" class="btn btn-secondary" data-dismiss="modal" value="0">Çıkış</button>
+                    <button type="submit" name="submitButton" class="btn btn-primary" data-dismiss="modal" value="1">Evet </button>
+                   
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<h1 id="font-style">Personel Listesi</h1>
+
+<div>
+    <br />
+
+    <button type="submit" id="createbutton" onclick="location='/Home/CreateList'" class="createuzaklik"><i class="fa fa-sign-in fa-fw"></i>Create</button>
+
+    <input type="image" src="~/İmg/logout.png" onclick="location='/Home/Index'"class="createuzaklik2"  id="createicon">
+    @*<a href="@Url.Action("Delete", "Home", new { id = item.PersonellId })">Delete<i data-toggle="modal" class="fa fa-edit fa-fw"></i> </a>*@
+    <table>
+
+        <tr>
+            <th>Id</th>
+
+            <th>Ad</th>
+
+            <th>Soyad</th>
+
+            <th>Departman</th>
+
+            <th>İzin Gün Sayısı</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+
+        {
+
+            <tr>
+
+                <td>
+
+                    @Html.DisplayFor(Model => item.PersonellId)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(Model => item.Ad)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(Model => item.Soyad)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(Model => item.DepartmanAd)
+
+                </td>
+
+                <td>
+
+                    @Html.DisplayFor(Model => item.İzinGunu)
+
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Edit", "Home", new { id = item.PersonellId })">Düzenle<i class="fa fa-edit fa-fw"></i> </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("DetayList", "Home", new { id = item.PersonellId })">Detay<i class="fa fa-edit fa-fw"></i> </a>
+
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", "Home", new { id = item.PersonellId })">Delete<i data-toggle="modal" class="fa fa-edit fa-fw"></i> </a>
+                    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Delete
+                        </button>*@
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+
+</div>
+

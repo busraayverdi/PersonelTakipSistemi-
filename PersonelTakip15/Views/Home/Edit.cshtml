@@ -1,0 +1,123 @@
+﻿@model Personel.Model.PersonelViewModel
+
+@{
+    ViewBag.Title = "Update";
+}
+<style>
+    body {
+        background-color: #d6cece;
+    }
+
+    #kaydet {
+        background-color: #ad6565;
+        color: black;
+    }
+
+    .fontstyle {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-weight: 300;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    }
+
+    #frame {
+        width: 100px;
+        height: 250px;
+        margin: auto;
+    }
+</style>
+
+@using (Html.BeginForm("Update", "Home", new { id = Model.PersonellId}))
+
+{
+
+    @Html.AntiForgeryToken()//Bir koruma metodudur.Web form yapılarına gelen istekler bizim serverımızdan mı yoksa karşı sitelerden mi geliyor bunu anlarız.
+
+
+    @Html.ValidationSummary(true)//Hata özeti gösterir.
+
+    if (@ViewBag.Message != null)
+
+    {
+
+        <div style="border: 1px solid red">
+
+            @ViewBag.Message
+
+        </div>
+    }
+
+    <div class="form-horizontal">
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group" align="center">
+
+            <h5 align="center" class="fontstyle"> Kullanıcı Adı</h5>
+
+            <div class="col-md-20">
+
+
+                @Html.EditorFor(a => a.Ad)
+
+            </div>
+
+        </div>
+
+        <div class="form-group" align="center">
+
+            <h5 align="center" class="fontstyle">Soyad</h5>
+
+            <div class="col-md-20" name="Soyad">
+
+                @Html.EditorFor(a => a.Soyad)
+
+
+            </div>
+
+        </div>
+
+        <div class="form-group" align="center">
+
+            <h5 align="center" class="fontstyle">Departman</h5>
+
+            @Html.DropDownListFor(m => m.Departman,
+        new SelectList(Enum.GetValues(typeof(PersonelTakip15.Enum.DepartmanEnum))),
+        "seçiniz")
+
+
+
+        </div>
+
+        <div class="form-group" align="center">
+
+            <h5 align="center" class="fontstyle">İzin Günü</h5>
+
+            <div class="col-md-20" name="İzinGunu">
+
+                @Html.EditorFor(a => a.İzinGunu)
+
+
+            </div>
+
+        </div>
+
+        <div class="form-group" align="center">
+
+            <div class="col-md-20">
+
+                <button type="submit" id="guncelle"><i class="fa fa-sign-in fa-fw"></i>Güncelle</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+}
+
+
+
+
